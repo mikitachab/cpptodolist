@@ -17,6 +17,7 @@ int main(int ac, char* av[])
         desc.add_options()
             ("help", "produce help message")
             ("add,a", po::value<std::vector<std::string>>()->multitoken(), "add todo")
+            ("remove,r", po::value<unsigned int>(), "remove todo with given index")
             ("list,l", "show  todos list")
         ;
 
@@ -26,6 +27,8 @@ int main(int ac, char* av[])
 
         controller.registerCommand("list", std::make_shared<ListCommand>());
         controller.registerCommand("add", std::make_shared<AddCommand>());
+        controller.registerCommand("remove", std::make_shared<RemoveCommand>());
+
 
         App app = App{controller, args};
         app.run();

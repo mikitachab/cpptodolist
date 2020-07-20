@@ -1,7 +1,6 @@
 #include "App.hpp"
 
 #include <string>
-#include <iostream>
 
 
 std::string App::getCommandName(){

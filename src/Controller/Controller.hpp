@@ -7,7 +7,7 @@
 #include <vector>
 #include <unordered_map>
 #include <string>
-
+#include <exception>
 
 namespace po = boost::program_options;
 

@@ -15,7 +15,7 @@ struct App {
 };
 
 struct BadCommadException: public std::exception {
-    const char* what() const throw() {
+    const char* what() {
         return "invalid command provided";
     }
 };

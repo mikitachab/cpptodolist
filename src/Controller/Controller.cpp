@@ -1,12 +1,21 @@
 #include "Controller.hpp"
 
+#include <exception>
+
+
 void Controller::registerCommand(std::string cmdName, std::shared_ptr<Command> cmd) {
-    commandMap[cmdName] = cmd;
-    // TODO handle command already exist
+    if (!commandMap.count(cmdName)){
+        commandMap[cmdName] = cmd;
+    } else {
+        throw std::runtime_error(cmdName + " is already registered");
+    }
 }
 
 void Controller::dispatch(std::string cmdName, po::variables_map vm) {
-    auto cmd = commandMap.at(cmdName);
-    // TODO handle cmd does not exist
-    cmd->execute(vm);
+    if (commandMap.count(cmdName)){
+        auto cmd = commandMap.at(cmdName);
+        cmd->execute(vm);
+    } else {
+        throw std::runtime_error("calling unregistered command: " + cmdName);
+    }
 }
